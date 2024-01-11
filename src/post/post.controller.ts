@@ -1,6 +1,7 @@
+import { ExceptionsLoggerFilter } from 'src/utils/exceptions-logger.filter/exceptions-logger.filter';
 import { CreatePostDto } from './dto/create-post-dto/create-post-dto';
 import { PostService } from './post.service';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseFilters } from '@nestjs/common';
 
 @Controller('post')
 export class PostController {
@@ -10,6 +11,7 @@ export class PostController {
     return await this.postService.getAllPosts();
   }
   @Post('create')
+  @UseFilters(ExceptionsLoggerFilter)
   async createPost(@Body() data: CreatePostDto) {
     return this.postService.createPost(data);
   }

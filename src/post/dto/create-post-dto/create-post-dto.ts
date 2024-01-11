@@ -1,4 +1,10 @@
+import { IsNotEmpty, MinLength } from 'class-validator';
+
 export class CreatePostDto {
-  content: string;
+  @IsNotEmpty()
+  @MinLength(5)
   title: string;
+
+  @IsNotEmpty()
+  content: string;
 }
